@@ -1,0 +1,13 @@
+# test for self loop
+
+# transition function
+q0 a -> q1
+q1 a -> q2
+q1 b -> q3
+q3 a -> q3
+
+# initial states
+S0: q0
+
+# accepting states
+F: q2 q3

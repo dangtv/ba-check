@@ -1,0 +1,13 @@
+# transition functions
+q0 a -> q1
+q0 b -> q5
+q1 a -> q2
+q2 a -> q3
+q3 a -> q4
+q4 a -> q2
+
+# initial state
+S0: q0
+
+# accepting states
+F: q2
