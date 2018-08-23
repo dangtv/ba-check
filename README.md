@@ -1,20 +1,17 @@
-# Constructing intersection of two Büchi automata, checking emptiness of Büchi automata
+# Given two Buchi automata A1 and A2, decide if Lω(A1) ∩ Lω(A2) is empty or not
 
 ## Installation
 
 * Dependencies:
-  * OCaml >= 4.06.1: [Installation guide](https://ocaml.org/docs/install.html#Ubuntu)
-  * ocamlyacc >= 4.02.1: opam install ocamlyacc
-  * ocamllex >= 4.02.1: opam install ocamllex
-  * findlib (>= 1.3.1)
+  * OCaml >= 4.06.1: [Installation guidance](https://ocaml.org/docs/install.html)
   * GNU Make >= 3.81 
 
-* Installing:
+* Compilation:
   * Clean:
     ```bash
         make clean
     ```
-  * Build:
+  * Build (the built executable file is ./bin/checkba):
     ```bash
         make all
     ```
@@ -23,7 +20,7 @@
 
 ### Syntax for writing an automaton
 
-```bnf
+```text
 <automaton>  ::= <trans> <inits> <acceptings>
 <trans>      ::= {<state> <alpha> "->" <state>}
 <inits>      ::= "S0:" {<state>}
@@ -35,7 +32,7 @@
 
 ### Checking
 
-* Given two Büchi automata A1 and A2, run the binary file `./bin/checkba` to check the emptiness of Lω(A1) ∩ Lω(A1):
+* Given two Büchi automata A1 and A2, run the binary file `./bin/checkba` to check the emptiness of Lω(A1) ∩ Lω(A2):
 
     ```bash
     usage: bin/checkba [OPTIONS]
@@ -45,20 +42,24 @@
     -help  Display this list of options
     --help  Display this list of options
     ```
+* A message will be printed to tell if Lω(A1) ∩ Lω(A2) is empty or not
 
-* Visualizing the output file: The output file is a .dot file, which can be visulized by [graphviz](https://graphviz.gitlab.io), see (https://graphviz.gitlab.io/download/) to learn how to install graphviz. Two convert this .dot file to png:
+* The output file is a visulazation of the constructed Büchi automaton. In this file, the red path shows the lasso of the buchi automaton.
+  * The output file has a format of .dot, which can be visulized by [graphviz](https://graphviz.gitlab.io), see (https://graphviz.gitlab.io/download/) to learn how to install graphviz.
+  * Graphviz can convert a .dot file to a .png file by using this command:
 
     ```bash
         dot -Tpng dot_file_name > file_name.png
     ```
+  
 
-### Example
+### Examples
 
 * Example 1:
 
 ```bash
-        bin/checkba -f1 sample/mytest1.txt -f2 sample/mytest2.txt -o sample/mytest12.dot
-        dot -Tpng sample/mytest12.dot > sample/mytest12.png
+        bin/checkba -f1 sample/test1.txt -f2 sample/test2.txt -o sample/test12.dot
+        dot -Tpng sample/test12.dot > sample/test12.png
 ```
 
 * Example 2:
